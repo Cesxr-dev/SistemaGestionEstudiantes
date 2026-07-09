@@ -5,17 +5,18 @@
 package ui;
 
 import java.util.Scanner;
+import model.Curso;
 import model.Estudiante;
 import services.GestionSistemaService;
 
 /**
  *
- * @author demib
+ * @author Cesar Demian Quiroz Montijo 252975
  */
 public class SistemaEstudiantes {
     private static final Scanner scanner = new Scanner(System.in);
     
-    private static  GestionSistemaService gestionService = new GestionSistemaService();
+    private static final  GestionSistemaService gestionService = new GestionSistemaService();
 
     public static void main(String[] args) {
         menuPrincipal();
@@ -82,9 +83,9 @@ public class SistemaEstudiantes {
         String op = scanner.nextLine();
         
         switch (op) {
-            case "1" -> System.out.println("");
-            case "2" -> System.out.println("");
-            case "3" -> System.out.println("");
+            case "1" -> agregarCursoAlCatalogo();
+            case "2" -> eliminarCurso();
+            case "3" -> listarCatalogoCursos();
             case "4" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
@@ -158,7 +159,7 @@ public class SistemaEstudiantes {
         System.out.println("\n=== REGISTRO DE NUEVO ESTUDIANTE ===");
     
         System.out.print("Matricula (Ej. ABC1234): ");
-        String matricula = scanner.nextLine();
+        String matricula = scanner.nextLine().toUpperCase();
 
         System.out.print("Nombre completo: ");
         String nombre = scanner.nextLine();
@@ -183,11 +184,68 @@ public class SistemaEstudiantes {
             System.out.println("Error:" + e.getMessage());
             System.out.println("No se pudo completar el registro. Intente de nuevo.");
         }
+    }
+    
+    
+    private static void agregarCursoAlCatalogo(){
+        System.out.println("\n=== REGISTRO DE NUEVO CURSO ===");
         
         
+    
+        System.out.print("Clave del curso (Ej. MAT-123): ");
+        String clave = scanner.nextLine().trim().toUpperCase();
+
         
+        System.out.print("Nombre del curso: ");
+        String nombre = scanner.nextLine().toUpperCase();
         
+        //validacion para que obligatoriamente el usuario llene tanto la clave como el nombre
+        while(clave.isBlank() || nombre.isBlank()){
+            System.out.println(" ERROR: Debes llenar todos los campos.");
+            
+            System.out.print("Clave del curso (Ej. MAT-123): ");
+            clave = scanner.nextLine().trim().toUpperCase();
+
+
+            System.out.print("Nombre del curso: ");
+            nombre = scanner.nextLine().toUpperCase();
+        }
         
+        Curso curso = new Curso(clave,nombre);
         
+        try{
+            gestionService.agregarCurso(curso);
+            System.out.println("Curso registrado con exito!");
+            
+        }catch(Exception e){
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("No se pudo completar el registro del curso. Intente de nuevo.");
+        }
+    }
+    
+    private static void eliminarCurso(){
+        System.out.println("\n=== ELIMINAR CURSO ===");
+        
+        System.out.print("Clave del curso a eliminar (Ej. MAT-123): ");
+        String clave = scanner.nextLine().trim().toUpperCase();
+        
+        //validacion para que obligatoriamente el usuario llene el campo clave
+        while (clave.isBlank()) {
+            System.out.println(" ERROR: La clave no puede estar vacia");
+            clave = scanner.nextLine().trim().toUpperCase();
+        }
+        
+        try{
+            gestionService.eliminarCurso(clave);
+            System.out.println("Curso eliminado con exito!");
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
+        }
+        
+    }
+    
+    private static void listarCatalogoCursos(){
+        gestionService.listarCursos();
     }
 }
