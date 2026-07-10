@@ -26,6 +26,10 @@ public class Estudiante implements Comparable<Estudiante>{
         this.direccionPostal = direccionPostal;
     }
     
+    public Estudiante(String matricula) {
+        this.matricula = matricula;
+        
+    }
     
 
     public String getMatricula() {

@@ -67,7 +67,7 @@ public class SistemaEstudiantes {
         
         switch (op) {
             case "1" -> ejecutarRegistroEstudiante();
-            case "2" -> System.out.println("");
+            case "2" -> buscarEstudiantePorMatricula();
             case "3" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
@@ -184,6 +184,31 @@ public class SistemaEstudiantes {
             System.out.println("Error:" + e.getMessage());
             System.out.println("No se pudo completar el registro. Intente de nuevo.");
         }
+    }
+    
+    private static void buscarEstudiantePorMatricula(){
+        System.out.println("\n=== BUSQUEDA DE ESTUDIANTE POR MATRICULA ===");
+    
+        System.out.print("Matricula (Ej. ABC1234): ");
+        String matricula = scanner.nextLine().toUpperCase();
+        
+        
+        while(matricula.isBlank()){
+            System.out.println(" ERROR: Debes llenar todos los campos.");
+            
+            System.out.print("Matricula (Ej. ABC1234): ");
+            matricula = scanner.nextLine().toUpperCase();
+        }
+        
+        try{
+            Estudiante encontrado = gestionService.buscarEstudiante(matricula);
+            System.out.println("Estudiante encontrado!: " + encontrado.toString() );
+        }catch(Exception e){
+            
+            System.out.println("Estudiante no encontrado.");
+        }
+        
+        
     }
     
     

@@ -28,6 +28,11 @@ public class GestionSistemaService {
     }
     
     
+    public Estudiante  buscarEstudiante(String matricula){
+        Estudiante temporal = new Estudiante(matricula);
+        return arbolEstudiantes.buscar(temporal);
+    }
+    
     /**
      * Metodo para agregar un curso al Diccionario/Tabla de cursos
      * @param c Curso a insertar

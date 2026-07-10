@@ -9,6 +9,7 @@ package implementacion;
  * @author Cesar Demian Quiroz Montijo 252975
  * @param <T>
  */
+
 public class BinarySearchTree<T extends Comparable<T>>{
     
     private class Nodo<T>{
@@ -45,8 +46,6 @@ public class BinarySearchTree<T extends Comparable<T>>{
         public void setHijoDer(Nodo<T> hijoDer) {
             this.hijoDer = hijoDer;
         }
-        
-
     }
     
     private Nodo<T> raiz;
@@ -96,8 +95,10 @@ public class BinarySearchTree<T extends Comparable<T>>{
     public void insertar(T dato) {
         raiz = insertar(raiz, dato);
     }
-
+    
+    
     private Nodo<T> insertar(Nodo<T> nodo, T dato) {
+        
         if (nodo == null) {
             // encuentra un nodo vacio, se inserta el nuevo
             return new Nodo<>(dato);
@@ -117,7 +118,26 @@ public class BinarySearchTree<T extends Comparable<T>>{
 
         return nodo;
     }
-
     
     
+    public T buscar(T dato) {
+        return buscar(raiz, dato);
+    }
+    
+    private T buscar(Nodo<T> nodo, T dato) {
+        
+        if (nodo == null) {
+            return null; // no encontrado
+        }
+        
+        int comparacion = dato.compareTo(nodo.getDato());
+        
+        if (comparacion == 0) {
+            return nodo.getDato();
+        } else if (comparacion < 0) {
+            return buscar(nodo.getHijoIzq(), dato);
+        } else {
+            return buscar(nodo.getHijoDer(), dato);
+        }
+    }
 }
