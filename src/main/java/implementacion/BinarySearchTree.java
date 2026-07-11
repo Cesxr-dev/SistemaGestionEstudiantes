@@ -4,13 +4,15 @@
  */
 package implementacion;
 
+import interfaces.ITree;
+
 /**
  *
  * @author Cesar Demian Quiroz Montijo 252975
  * @param <T>
  */
 
-public class BinarySearchTree<T extends Comparable<T>>{
+public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
     
     private class Nodo<T>{
         T dato;
@@ -92,12 +94,17 @@ public class BinarySearchTree<T extends Comparable<T>>{
         }
     }
     
-    public void insertar(T dato) {
-        raiz = insertar(raiz, dato);
+    @Override
+    public boolean insert(T dato) {
+        if (find(dato) != null) {
+            return false;
+        }
+        raiz = insert(raiz, dato);
+        return true;
     }
     
     
-    private Nodo<T> insertar(Nodo<T> nodo, T dato) {
+    private Nodo<T> insert(Nodo<T> nodo, T dato) {
         
         if (nodo == null) {
             // encuentra un nodo vacio, se inserta el nuevo
@@ -109,22 +116,63 @@ public class BinarySearchTree<T extends Comparable<T>>{
 
         if (comparacion < 0) {
 
-            nodo.setHijoIzq(insertar(nodo.getHijoIzq(), dato));
+            nodo.setHijoIzq(insert(nodo.getHijoIzq(), dato));
         } else if (comparacion > 0) {
 
-            nodo.setHijoDer(insertar(nodo.getHijoDer(), dato));
+            nodo.setHijoDer(insert(nodo.getHijoDer(), dato));
         }
         // comparacion == 0 es porque el dato existe asi que no se hace nada para evitar duplicacion
 
         return nodo;
     }
     
-    
-    public T buscar(T dato) {
-        return buscar(raiz, dato);
+    @Override
+    public boolean remove(T dato) {
+        if (find(dato) == null) {
+            return false;
+        }
+        raiz = remove(raiz, dato);
+        return true;
     }
     
-    private T buscar(Nodo<T> nodo, T dato) {
+    private Nodo<T> remove(Nodo<T> nodo, T dato) {
+        if (nodo == null) return null;
+
+        int comparacion = dato.compareTo(nodo.getDato());
+        if (comparacion < 0) {
+            nodo.hijoIzq = remove(nodo.hijoIzq, dato);
+        } else if (comparacion > 0) {
+            nodo.hijoDer = remove(nodo.hijoDer, dato);
+        } else {
+            // Caso 1: hoja
+            if (nodo.hijoIzq == null && nodo.hijoDer == null) {
+                return null;
+            }
+            // Caso 2: un solo hijo derecho
+            if (nodo.hijoIzq == null) {
+                return nodo.hijoDer;
+            }
+            // Caso 3: un solo hijo izquierdo
+            if (nodo.hijoDer == null) {
+                return nodo.hijoIzq;
+            }
+            // Caso 4: dos hijos
+            Nodo<T> sucesor = findSmallest(nodo.hijoDer);
+
+            nodo.setDato(sucesor.getDato());
+
+            nodo.hijoDer = remove(nodo.hijoDer, sucesor.getDato());
+        }
+        return nodo;
+    }
+    
+    
+    @Override
+    public T find(T dato) {
+        return find(raiz, dato);
+    }
+    
+    private T find(Nodo<T> nodo, T dato) {
         
         if (nodo == null) {
             return null; // no encontrado
@@ -135,9 +183,21 @@ public class BinarySearchTree<T extends Comparable<T>>{
         if (comparacion == 0) {
             return nodo.getDato();
         } else if (comparacion < 0) {
-            return buscar(nodo.getHijoIzq(), dato);
+            return find(nodo.getHijoIzq(), dato);
         } else {
-            return buscar(nodo.getHijoDer(), dato);
+            return find(nodo.getHijoDer(), dato);
         }
+    }
+    
+    private Nodo<T> findSmallest(Nodo<T> nodo) {
+        while (nodo.hijoIzq != null) {
+            nodo = nodo.hijoIzq;
+        }
+        return nodo;
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return raiz == null;
     }
 }

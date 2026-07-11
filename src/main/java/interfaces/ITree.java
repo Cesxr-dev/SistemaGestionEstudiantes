@@ -33,10 +33,4 @@ public interface ITree<T> {
      * @return verdadero o falso
      */
     boolean isEmpty();
-    
-    /**
-     * calcula el tamaño del arbol y lo regresa
-     * @return el tamaño del arbol
-     */
-    int size();
 }

@@ -58,6 +58,7 @@ public class Diccionario<K, V> implements IDictionary<K, V> {
         tamanio++;
     }
 
+    @Override
     public V get(K key) {
         int bucketIndex = obtenerIndiceBucket(key);
         HashNode<K, V> head = buckets[bucketIndex];
@@ -71,6 +72,7 @@ public class Diccionario<K, V> implements IDictionary<K, V> {
         return null;
     }
 
+    @Override
     public V remove(K key) {
         int bucketIndex = obtenerIndiceBucket(key);
         HashNode<K, V> head = buckets[bucketIndex];
