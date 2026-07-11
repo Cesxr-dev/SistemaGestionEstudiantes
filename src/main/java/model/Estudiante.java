@@ -5,8 +5,7 @@
 package model;
 
 /**
- *
- * @author demib
+ * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
  */
 public class Estudiante implements Comparable<Estudiante>{
     private String matricula; // EJ: ABCD1234
