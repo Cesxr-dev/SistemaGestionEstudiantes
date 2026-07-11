@@ -216,41 +216,35 @@ public class SistemaEstudiantes {
     private static void agregarCursoAlCatalogo(){
         System.out.println("\n=== REGISTRO DE NUEVO CURSO ===");
         
-        
-    
         System.out.print("Clave del curso (Ej. MAT-123): ");
         String clave = scanner.nextLine().trim().toUpperCase();
 
-        
         System.out.print("Nombre del curso: ");
         String nombre = scanner.nextLine().toUpperCase();
         
         System.out.print("Capacidad maxima del curso: ");
-        int capacidad = Integer.parseInt(scanner.nextLine());
-        
-        //validacion para que obligatoriamente el usuario llene tanto la clave como el nombre
-        while(clave.isBlank() || nombre.isBlank()){
-            System.out.println(" ERROR: Debes llenar todos los campos.");
-            
-            System.out.print("Clave del curso (Ej. MAT-123): ");
-            clave = scanner.nextLine().trim().toUpperCase();
+        try {
+            int capacidad = Integer.parseInt(scanner.nextLine());
+            //validacion para que obligatoriamente el usuario llene tanto la clave como el nombre
+            while(clave.isBlank() || nombre.isBlank()){
+                System.out.println(" ERROR: Debes llenar todos los campos.");
+
+                System.out.print("Clave del curso (Ej. MAT-123): ");
+                clave = scanner.nextLine().trim().toUpperCase();
 
 
-            System.out.print("Nombre del curso: ");
-            nombre = scanner.nextLine().toUpperCase();
+                System.out.print("Nombre del curso: ");
+                nombre = scanner.nextLine().toUpperCase();
+
+                System.out.print("Capacidad maxima del curso: ");
+                capacidad = Integer.parseInt(scanner.nextLine());
+            }
+            Curso curso = new Curso(clave,nombre,capacidad);
             
-            System.out.print("Capacidad maxima del curso: ");
-            capacidad = Integer.parseInt(scanner.nextLine());
-        }
-        
-        Curso curso = new Curso(clave,nombre,capacidad);
-        
-        try{
             gestionService.agregarCurso(curso);
             System.out.println("Curso registrado con exito!");
-            
-        }catch(Exception e){
-            System.out.println("Error:" + e.getMessage());
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("No se pudo completar el registro del curso. Intente de nuevo.");
         }
     }
