@@ -8,8 +8,11 @@ import implementacion.BinarySearchTree;
 import implementacion.Diccionario;
 import implementacion.DoubleLinkedListCircular;
 import implementacion.LinkedList;
+import implementacion.LinkedListQueue;
+import interfaces.IQueue;
 import model.Curso;
 import model.Estudiante;
+import model.SolicitudCalificacion;
 
 /**
  * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
@@ -20,6 +23,7 @@ public class GestionSistemaService {
     private final Diccionario<String,Curso> tablaCursos = new Diccionario<>(20);
     private final LinkedList<Estudiante> inscritos = new LinkedList<>();
     private final DoubleLinkedListCircular<Estudiante> enEspera = new DoubleLinkedListCircular<>();
+    IQueue<SolicitudCalificacion> colaSolicitudes = new LinkedListQueue<>();
     
     /**
      * Metodo para agregar un estudiante al arbol BST
@@ -123,6 +127,89 @@ public class GestionSistemaService {
         }
         
         curso.mostrarPrimerosEnEspera(n);
+    }
+    
+    
+    /**
+     * Envia una solicitud de calificacion a la cola generica (FIFO) tras validar
+     * que sea estructuradamente correcta y que el estudiante exista en el sistema.
+     * 
+     * @param solicitud La solicitud a encolar.
+     * @throws IllegalArgumentException Si la solicitud es nula o contiene datos invalidos.
+     * @throws NullPointerException Si el estudiante no existe en el Arbol Binario (BST).
+     */
+    public void enviarSolicitud(SolicitudCalificacion solicitud) {
+        // 1Validar que el objeto solicitud exista
+        if (solicitud == null) {
+            throw new IllegalArgumentException("Error: La solicitud no puede ser nula.");
+        }
+        
+        // Validar consistencia de los datos internos de la solicitud
+        if (solicitud.getMatricula() == null || solicitud.getMatricula().trim().isEmpty()) {
+            throw new IllegalArgumentException("Error: La matricula de la solicitud no es valida.");
+        }
+        if (solicitud.getClave()== null || solicitud.getClave().trim().isEmpty()) {
+            throw new IllegalArgumentException("Error: La clave del curso no puede estar vacia.");
+        }
+        // Validar que la nota este en un rango logico escolar (ejemplo: 0.0 a 10.0 o 0 a 100)
+        if (solicitud.getNota() < 0.0 || solicitud.getNota() > 10.0) { 
+            throw new IllegalArgumentException("Error: La calificacion debe estar en el rango de 0.0 a 10.0.");
+        }
+
+        // Validar existencia previa del estudiante
+        Estudiante estTemp = new Estudiante(solicitud.getMatricula());
+        if (arbolEstudiantes.find(estTemp) == null) {
+            throw new NullPointerException("Error: No se puede encolar la solicitud porque el estudiante con matricula " 
+                    + solicitud.getMatricula() + " no esta registrado en el sistema.");
+        }
+
+        // Si paso todos los filtros, entra a la cola
+        colaSolicitudes.enqueue(solicitud);
+    }
+    
+    /**
+     * Procesa la siguiente solicitud en la cola.
+     * Busca al estudiante en el BST y actualiza o añade la calificacion.
+     * 
+     * @return Mensaje con el resultado de la operacion para mostrar en la UI
+     */
+    public String procesarSiguienteSolicitud() {
+        // Validar si hay elementos en la cola genérica
+        if (colaSolicitudes.isEmpty()) {
+            return "No hay solicitudes pendientes en la cola.";
+        }
+        
+        // Desencolar (Dequeue) la solicitud correspondiente 
+        SolicitudCalificacion solicitud = colaSolicitudes.dequeue();
+        
+        // Buscar al estudiante en el Árbol Binario de Búsqueda (BST)
+        // Creamos un estudiante temporal con la matrícula para la comparación del BST
+        Estudiante estudianteTemp= new Estudiante(solicitud.getMatricula());
+        Estudiante estudianteEncontrado = arbolEstudiantes.find(estudianteTemp);
+        
+        if (estudianteEncontrado == null) {
+            return "Error: El estudiante con matricula " + solicitud.getMatricula() + " no existe en el sistema.";
+        }
+        
+        // Intentar actualizar la calificación del curso (setCalificacion)
+        // Si el curso ya existia, se modifica y devuelve true.
+        boolean actualizada = estudianteEncontrado.getCalificaciones().setCalificacion(
+            solicitud.getClave(), 
+            solicitud.getNota()
+        );
+        
+        // Si no se pudo actualizar (porque es un curso nuevo), se agrega (addCalificacion)
+        if (!actualizada) {
+            estudianteEncontrado.getCalificaciones().addCalificacion(
+                solicitud.getClave(), 
+                solicitud.getNota()
+            );
+            return "Nueva calificacion agregada con exito al estudiante: " + estudianteEncontrado.getNombreCompleto() 
+                    + " en el curso [" + solicitud.getClave()+ "].";
+        }
+        
+        return "Calificacion modificada con exito para el estudiante: " + estudianteEncontrado.getNombreCompleto() 
+                + " en el curso [" + solicitud.getClave() + "].";
     }
     
     

@@ -8,12 +8,14 @@ package model;
  * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
  */
 public class Estudiante implements Comparable<Estudiante> {
+
     private String matricula; // EJ: ABCD1234
     private String nombreCompleto;
     private String telefono;
     private String correo;
     private String direccionPostal; // calle,numero,colonia,ciudad
     private Calificaciones calificaciones;
+
 
     public Estudiante(String matricula, String nombreCompleto, String telefono, String correo, String direccionPostal) {
         this.matricula = matricula;
@@ -75,8 +77,19 @@ public class Estudiante implements Comparable<Estudiante> {
 
     @Override
     public String toString() {
-        return "Estudiante{" + "matricula=" + matricula + ", nombreCompleto=" + nombreCompleto + ", telefono=" + telefono + ", correo=" + correo + ", direccionPostal=" + direccionPostal + '}';
+        return "Estudiante{" + 
+                "matricula='" + matricula + '\'' + 
+                ", nombreCompleto='" + nombreCompleto + '\'' + 
+                ", telefono='" + telefono + '\'' + 
+                ", correo='" + correo + '\'' + 
+                ", direccionPostal='" + direccionPostal + '\'' + 
+                ", calificaciones=" + calificaciones.toString() + 
+                '}';
     }
+
+    
+    
+    
     
     @Override
     public int compareTo(Estudiante o) {
