@@ -4,19 +4,24 @@
 package services;
 
 import interfaces.IAccion;
+import model.Curso;
+import model.Estudiante;
 
 //** @author Julian Daniel Ramirez Garcia
 
 public class RotarTutor implements IAccion {
 
+    private Curso curso;
+    private Estudiante tutorAnterior;
+    
     @Override
-    public void hacer() {
-        
+    public void hacer() throws Exception {
+        tutorAnterior = curso.getTutor();
+        curso.rotarTutor();
     }
 
     @Override
     public void deshacer() {
-        
+        curso.setTutor(tutorAnterior);
     }
-    
 }

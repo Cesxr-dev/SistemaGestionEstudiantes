@@ -342,7 +342,7 @@ public class SistemaEstudiantes {
         System.out.print("Clave del curso(Ej. MAT-123): ");
         String clave = scanner.nextLine().trim().toUpperCase();
         
-        System.out.print("Capacidad maxima del curso: ");
+        System.out.print("Calificacion (0 al 10): ");
         double calif = Double.parseDouble(scanner.nextLine());
         
         SolicitudCalificacion solicitud = new SolicitudCalificacion(matricula, clave, calif);
@@ -358,7 +358,7 @@ public class SistemaEstudiantes {
     
     private static void procesarSolicitudCalificacion(){
 
-        System.out.println("\n=== PROCESANDO SOLICITUD DE CALIFACION ===");
+        System.out.println("\n=== PROCESANDO SOLICITUD DE CALIFICACION ===");
 
         
         try{

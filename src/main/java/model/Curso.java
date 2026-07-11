@@ -7,10 +7,10 @@ package model;
 import implementacion.DoubleLinkedListCircular;
 import implementacion.LinkedList;
 
-
 public class Curso implements Comparable<Curso> {
     private String clave, nombre;
     private int capacidad; // Capacidad maxima del curso
+    private Estudiante tutor;
     
     private LinkedList<Estudiante> inscritos; // Estudiantes inscritos
     private DoubleLinkedListCircular<Estudiante> enEspera; // Estudiantes en espera
@@ -77,6 +77,27 @@ public class Curso implements Comparable<Curso> {
         } else {
             enEspera.append(estudiante); // Se va a lista de espera
         }
+    }
+    
+    /**
+     * 
+     */
+    public void eliminarEstudiante(Estudiante estudiante) throws Exception {
+        // Primero intentamos eliminarlo de los inscritos
+        if (inscritos.remove(estudiante)) {
+            // Si hay alguien esperando, ocupa el lugar disponible
+            if (!enEspera.isEmpty()) {
+                Estudiante siguiente = enEspera.get(0);
+                enEspera.remove(siguiente);
+                inscritos.append(siguiente);
+            }
+            return;
+        }
+        // Si no estaba inscrito, intentamos eliminarlo de la lista de espera
+        if (enEspera.remove(estudiante)) {
+            return;
+        }
+        throw new Exception("El estudiante no pertenece al curso.");
     }
     
     /**
@@ -174,4 +195,31 @@ public class Curso implements Comparable<Curso> {
         return false;
     }
     
+    public void rotarTutor() throws Exception {
+        if (inscritos.isEmpty()) {
+            throw new Exception("No hay estudiantes inscritos en el curso.");
+        }
+        if (tutor == null) {
+            tutor = inscritos.get(0);
+            return;
+        }
+        
+        int indice = inscritos.indexOf(tutor);
+        if (indice == -1) {
+            throw new Exception("El tutor actual no pertenece al curso.");
+        }
+        if (indice == inscritos.getTamanio() - 1) {
+            tutor = inscritos.get(0);
+        } else {
+            tutor = inscritos.get(indice + 1);
+        }
+    }
+    
+    public Estudiante getTutor() {
+        return tutor;
+    }
+    
+    public void setTutor(Estudiante tutor) {
+        this.tutor = tutor;
+    }
 }

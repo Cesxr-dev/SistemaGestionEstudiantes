@@ -7,7 +7,6 @@ services\RotarTutor.class
 services\GestionSistemaService.class
 services\InscribirEstudiante.class
 implementacion\AVLTree$Nodo.class
-model\Estudiante$Calificaciones.class
 services\EliminarCurso.class
 implementacion\Diccionario$HashNode.class
 implementacion\AVLTree.class
@@ -24,6 +23,7 @@ implementacion\LinkedListQueue$Nodo.class
 model\Estudiante.class
 implementacion\LinkedList.class
 services\ProcesarSolicitudDeCalificacion.class
+model\Calificaciones.class
 interfaces\IStack.class
 model\Curso.class
 implementacion\DoubleLinkedListCircular$Nodo.class

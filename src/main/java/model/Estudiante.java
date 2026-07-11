@@ -4,99 +4,11 @@
  */
 package model;
 
-import implementacion.DynamicArray;
-
 /**
  * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
  */
 public class Estudiante implements Comparable<Estudiante> {
-    
-    public class Calificaciones {
-        DynamicArray<String> cursos;
-        DynamicArray<Double> notas;
-        
-        public Calificaciones() {
-            cursos = new DynamicArray<>();
-            notas = new DynamicArray<>();
-        }
-        
-        public boolean setCalificacion(String claveCurso, double nota) {
-            int i = cursos.indexOf(claveCurso);
-            if(i != -1) {
-                notas.set(nota, i);
-                return true;
-            }
-            return false;
-        }
-        
-        public boolean addCalificacion(String claveCurso, double nota) {
-            if(cursos.indexOf(claveCurso) != -1) {
-                return false;
-            }
-            cursos.append(claveCurso);
-            notas.append(nota);
-            return true;
-        }
-        
-        public boolean dropCalificacion(String claveCurso) throws Exception {
-            int indice = cursos.indexOf(claveCurso);
-            if (indice == -1) {
-                return false;
-            }
-            cursos.remove(claveCurso);
-            notas.remove(notas.get(indice));
-            return true;
-        }
-        
-        public Double obtenerCalificacion(String curso) {
-            int indice = cursos.indexOf(curso);
-            if(indice == -1) {
-                return null;
-            }
-            return notas.get(indice);
-        }
-        
-        public double calcularPromedio() {
-            if(notas.isEmpty()) {
-                return 0.0;
-            }
-            return calcularSuma(0) / notas.size();
-        }
-        
-        private double calcularSuma(int indice) {
-            if(indice == notas.size()) {
-                return 0.0;
-            }
-            return notas.get(indice) + calcularSuma(indice + 1);
-        }
-        
-        public int cantidadCursos() {
-            return cursos.size();
-        }
-        
-        public void mostrarCalificaciones() {
-            for(int i = 0; i < cursos.size(); i++) {
-                System.out.println(cursos.get(i) + ": " + notas.get(i));
-            }
-        }
-        
-        @Override
-        public String toString() {
-            if (cursos.isEmpty()) {
-                return "Sin cursos inscritos";
-            }
-            StringBuilder sb = new StringBuilder("[");
-            for (int i = 0; i < cursos.size(); i++) {
-                sb.append(cursos.get(i)).append(": ").append(notas.get(i));
-                if (i < cursos.size() - 1) {
-                    sb.append(", ");
-                }
-            }
-            sb.append("] (Promedio: ").append(calcularPromedio()).append(")");
-            return sb.toString();
-        }
-    }
-    
+
     private String matricula; // EJ: ABCD1234
     private String nombreCompleto;
     private String telefono;
@@ -104,9 +16,7 @@ public class Estudiante implements Comparable<Estudiante> {
     private String direccionPostal; // calle,numero,colonia,ciudad
     private Calificaciones calificaciones;
 
-    public Estudiante() {
-    }
-    
+
     public Estudiante(String matricula, String nombreCompleto, String telefono, String correo, String direccionPostal) {
         this.matricula = matricula;
         this.nombreCompleto = nombreCompleto;
@@ -121,7 +31,6 @@ public class Estudiante implements Comparable<Estudiante> {
         this.calificaciones = new Calificaciones();
     }
     
-
     public String getMatricula() {
         return matricula;
     }
