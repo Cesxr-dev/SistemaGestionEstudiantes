@@ -9,8 +9,9 @@ import model.Estudiante;
 
 //** @author Julian Daniel Ramirez Garcia
 
-public class ProcesarSolicitudDeCalificacion implements IAccion {
+public class ProcesarSolicitudDeCalificacion {
 
+    /*
     private BinarySearchTree<Estudiante> estudiantes;
     private SolicitudCalificacion solicitud;
     private Float calificacionAnterior;
@@ -27,4 +28,5 @@ public class ProcesarSolicitudDeCalificacion implements IAccion {
         Estudiante estudiante = estudiantes.find(new Estudiante(solicitud.getMatricula()));
         estudiante.getCalificaciones().setCalificacion(solicitud.getClave(), calificacionAnterior);
     }
+     */
 }

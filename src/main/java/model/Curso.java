@@ -10,6 +10,7 @@ import implementacion.LinkedList;
 public class Curso implements Comparable<Curso> {
     private String clave, nombre;
     private int capacidad; // Capacidad maxima del curso
+    private Estudiante tutor;
     
     private LinkedList<Estudiante> inscritos; // Estudiantes inscritos
     private DoubleLinkedListCircular<Estudiante> enEspera; // Estudiantes en espera
@@ -194,11 +195,31 @@ public class Curso implements Comparable<Curso> {
         return false;
     }
     
-    public void establecerTutor(Estudiante estudiante) throws Exception {
-        inscritos.setHead(estudiante);
+    public void rotarTutor() throws Exception {
+        if (inscritos.isEmpty()) {
+            throw new Exception("No hay estudiantes inscritos en el curso.");
+        }
+        if (tutor == null) {
+            tutor = inscritos.get(0);
+            return;
+        }
+        
+        int indice = inscritos.indexOf(tutor);
+        if (indice == -1) {
+            throw new Exception("El tutor actual no pertenece al curso.");
+        }
+        if (indice == inscritos.getTamanio() - 1) {
+            tutor = inscritos.get(0);
+        } else {
+            tutor = inscritos.get(indice + 1);
+        }
     }
     
     public Estudiante getTutor() {
-        return inscritos.get(0);
+        return tutor;
+    }
+    
+    public void setTutor(Estudiante tutor) {
+        this.tutor = tutor;
     }
 }

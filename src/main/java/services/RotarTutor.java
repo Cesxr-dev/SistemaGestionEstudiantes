@@ -15,13 +15,13 @@ public class RotarTutor implements IAccion {
     private Estudiante tutorAnterior;
     
     @Override
-    public void hacer() {
+    public void hacer() throws Exception {
         tutorAnterior = curso.getTutor();
-        curso.
+        curso.rotarTutor();
     }
 
     @Override
     public void deshacer() {
-        
+        curso.setTutor(tutorAnterior);
     }
 }
