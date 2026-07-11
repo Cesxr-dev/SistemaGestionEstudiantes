@@ -11,8 +11,9 @@ public interface IDictionary<K, V> {
      * pone en la clave del paramentro el valor del parametro
      * @param clave clave a la que se modificara su valor
      * @param valor nuevo valor al que apuntara la clave
+     * @throws java.lang.Exception cuando la clave no existe
      */
-    void put(K clave, V valor);
+    void put(K clave, V valor) throws Exception;
     
     /**
      * obtiene el valor guardado en la clave

@@ -4,11 +4,13 @@
  */
 package implementacion;
 
+import interfaces.IDictionary;
+
 /**
  *
  * @author Cesar Demian Quiroz Montijo 252975
  */
-public class Diccionario<K, V> {
+public class Diccionario<K, V> implements IDictionary<K, V> {
 
     private static class HashNode<K, V> {
         K key;
@@ -24,19 +26,20 @@ public class Diccionario<K, V> {
 
     private HashNode<K, V>[] buckets;
     private int capacidad;
-    private int tamaño;
+    private int tamanio;
 
     @SuppressWarnings("unchecked")
     public Diccionario(int capacidad) {
         this.capacidad = capacidad;
         this.buckets = new HashNode[capacidad];
-        this.tamaño = 0;
+        this.tamanio = 0;
     }
 
     private int obtenerIndiceBucket(K key) {
         return Math.abs(key.hashCode() % capacidad);
     }
 
+    @Override
     public void put(K key, V value) throws Exception {
         int bucketIndex = obtenerIndiceBucket(key);
         HashNode<K, V> head = buckets[bucketIndex];
@@ -52,7 +55,7 @@ public class Diccionario<K, V> {
         HashNode<K, V> nuevoNodo = new HashNode<>(key, value);
         nuevoNodo.next = head;
         buckets[bucketIndex] = nuevoNodo;
-        tamaño++;
+        tamanio++;
     }
 
     public V get(K key) {
@@ -83,7 +86,7 @@ public class Diccionario<K, V> {
 
         if (head == null) return null;
 
-        tamaño--;
+        tamanio--;
         if (prev != null) {
             prev.next = head.next;
         } else {
@@ -103,5 +106,10 @@ public class Diccionario<K, V> {
                 temp = temp.next;
             }
         }
+    }
+    
+    @Override
+    public int size() {
+        return tamanio;
     }
 }
