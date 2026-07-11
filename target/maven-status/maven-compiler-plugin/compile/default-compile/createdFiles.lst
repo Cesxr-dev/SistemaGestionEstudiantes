@@ -1,8 +1,13 @@
-model\Estudiante.class
+interfaces\IList.class
 ui\SistemaEstudiantes.class
 implementacion\BinarySearchTree.class
-model\Curso.class
+implementacion\LinkedList$Nodo.class
 services\GestionSistemaService.class
 implementacion\BinarySearchTree$Nodo.class
-implementacion\Diccionario$HashNode.class
+implementacion\DoubleLinkedListCircular.class
 implementacion\Diccionario.class
+model\Estudiante.class
+implementacion\LinkedList.class
+model\Curso.class
+implementacion\Diccionario$HashNode.class
+implementacion\DoubleLinkedListCircular$Nodo.class

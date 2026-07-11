@@ -10,9 +10,9 @@ import model.Estudiante;
 import services.GestionSistemaService;
 
 /**
- *
- * @author Cesar Demian Quiroz Montijo 252975
+ * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
  */
+
 public class SistemaEstudiantes {
     private static final Scanner scanner = new Scanner(System.in);
     
@@ -67,7 +67,7 @@ public class SistemaEstudiantes {
         
         switch (op) {
             case "1" -> ejecutarRegistroEstudiante();
-            case "2" -> System.out.println("");
+            case "2" -> buscarEstudiantePorMatricula();
             case "3" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
@@ -101,9 +101,9 @@ public class SistemaEstudiantes {
         String op = scanner.nextLine();
         
         switch (op) {
-            case "1" -> System.out.println("");
-            case "2" -> System.out.println("");
-            case "3" -> System.out.println("");
+            case "1" -> inscribirEstudiante();
+            case "2" -> mostrarListaCursoInscritos();
+            case "3" -> mostrarListaCursoEnEspera();
             case "4" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
@@ -186,6 +186,31 @@ public class SistemaEstudiantes {
         }
     }
     
+    private static void buscarEstudiantePorMatricula(){
+        System.out.println("\n=== BUSQUEDA DE ESTUDIANTE POR MATRICULA ===");
+    
+        System.out.print("Matricula (Ej. ABC1234): ");
+        String matricula = scanner.nextLine().toUpperCase();
+        
+        
+        while(matricula.isBlank()){
+            System.out.println(" ERROR: Debes llenar todos los campos.");
+            
+            System.out.print("Matricula (Ej. ABC1234): ");
+            matricula = scanner.nextLine().toUpperCase();
+        }
+        
+        try{
+            Estudiante encontrado = gestionService.buscarEstudiante(matricula);
+            System.out.println("Estudiante encontrado!: " + encontrado.toString() );
+        }catch(Exception e){
+            
+            System.out.println("Estudiante no encontrado.");
+        }
+        
+        
+    }
+    
     
     private static void agregarCursoAlCatalogo(){
         System.out.println("\n=== REGISTRO DE NUEVO CURSO ===");
@@ -199,6 +224,9 @@ public class SistemaEstudiantes {
         System.out.print("Nombre del curso: ");
         String nombre = scanner.nextLine().toUpperCase();
         
+        System.out.print("Capacidad maxima del curso: ");
+        int capacidad = Integer.parseInt(scanner.nextLine());
+        
         //validacion para que obligatoriamente el usuario llene tanto la clave como el nombre
         while(clave.isBlank() || nombre.isBlank()){
             System.out.println(" ERROR: Debes llenar todos los campos.");
@@ -209,9 +237,12 @@ public class SistemaEstudiantes {
 
             System.out.print("Nombre del curso: ");
             nombre = scanner.nextLine().toUpperCase();
+            
+            System.out.print("Capacidad maxima del curso: ");
+            capacidad = Integer.parseInt(scanner.nextLine());
         }
         
-        Curso curso = new Curso(clave,nombre);
+        Curso curso = new Curso(clave,nombre,capacidad);
         
         try{
             gestionService.agregarCurso(curso);
@@ -247,5 +278,60 @@ public class SistemaEstudiantes {
     
     private static void listarCatalogoCursos(){
         gestionService.listarCursos();
+    }
+    
+    private static void inscribirEstudiante(){
+        System.out.println("\n=== INSCRIPCION ESTUDIANTE A CURSO ===");
+        
+        
+    
+        System.out.print("Matricula del Estudiante(Ej. ABC-123): ");
+        String matricula = scanner.nextLine().trim().toUpperCase();
+        
+        System.out.print("Clave del curso(Ej. MAT-123): ");
+        String clave = scanner.nextLine().trim().toUpperCase();
+        
+        try{
+            gestionService.inscribirEstudianteACurso(matricula, clave);
+            System.out.println("Estudiante con matricula: " + matricula + " inscrito al curso: " + clave + " con exito!");
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
+        }
+    }
+    
+    private static void mostrarListaCursoInscritos(){
+        System.out.println("\n=== MOSTRAR LISTA DE INSCRITOS A CURSO ===");
+        
+        System.out.print("Clave del curso a listar(Ej. MAT-123): ");
+        String clave = scanner.nextLine().trim().toUpperCase();
+        
+        
+        try{
+            gestionService.mostrarInscritosDeCurso(clave);
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
+        }
+        
+    }
+    
+    private static void mostrarListaCursoEnEspera(){
+        
+        System.out.print("Clave del curso(Ej. MAT-123): ");
+        String clave = scanner.nextLine().trim().toUpperCase();
+        
+        System.out.print("Cuantos de la fila de espera desea mostrar?: ");
+        int n = Integer.parseInt(scanner.nextLine());
+        
+        try{
+            gestionService.mostrarFilaEsperaDeCurso(clave,n);
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
+        }
+        
+        
+        
     }
 }
