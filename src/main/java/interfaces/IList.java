@@ -9,6 +9,22 @@ package interfaces;
  * @author Cesar Demian Quiroz Montijo 252975 
  */
 public interface IList<T> {
+    
+    /**
+     * agrega un elemento al final de la lista
+     * 
+     * @param o elemento a agregar al final
+     */
+    void append(T o);
+    
+    /**
+     * devuelve el elemento encontrado en la posicion i
+     * 
+     * @param i indice de la lista para retornar
+     * @return elemento encontrado en el indice i
+     */
+    T get(int i);
+    
     /**
      * reemplaza el elemento que se encuentra en la
         posición i de la lista por el objeto del parámetro. 
@@ -17,7 +33,6 @@ public interface IList<T> {
      * @param i 
      */
     void set(T o, int i);
-    
     
     /**
      * elimina la primera ocurrencia del elemento del
@@ -37,6 +52,21 @@ public interface IList<T> {
      * @return 
      */
     int indexOf(T o);
+    
+    /**
+     * devuelve el tamaño actual de la lista
+     * 
+     * @return tamaño de la lista
+     */
+    int size();
+    
+    /**
+     * devuelve verdadero si la lista esta vacia, falso si la lista no esta
+     * vacia
+     * 
+     * @return verdadero o falso
+     */
+    boolean isEmpty();
     
     /**
      * elimina todos los elementos de la lista.
