@@ -4,15 +4,23 @@
  */
 package model;
 
+import implementacion.DynamicArray;
+
 /**
  * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
  */
-public class Estudiante implements Comparable<Estudiante>{
+public class Estudiante implements Comparable<Estudiante> {
+    
+    private class Calificaciones {
+        
+    }
+    
     private String matricula; // EJ: ABCD1234
     private String nombreCompleto;
     private String telefono;
     private String correo;
     private String direccionPostal; // calle,numero,colonia,ciudad
+    private Calificaciones calificaciones;
 
     public Estudiante() {
     }
