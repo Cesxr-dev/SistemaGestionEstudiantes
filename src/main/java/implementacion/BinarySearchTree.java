@@ -5,6 +5,7 @@
 package implementacion;
 
 import interfaces.ITree;
+import java.util.Iterator;
 
 /**
  *
@@ -12,7 +13,50 @@ import interfaces.ITree;
  * @param <T>
  */
 
-public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
+public class BinarySearchTree<T extends Comparable<T>> implements ITree<T>, Iterable<T> {
+
+    @Override
+    public Iterator<T> iterator() {
+        return new IteradorBST();
+    }
+    
+    private class IteradorBST implements Iterator<T> {
+        private LinkedListStack<Nodo> pila;
+
+        public IteradorBST() {
+            pila = new LinkedListStack<>();
+            agregarIzquierdos(raiz);
+        }
+
+        /**
+         * Agrega todos los nodos izquierdos desde un nodo dado
+         */
+        private void agregarIzquierdos(Nodo nodo) {
+            while (nodo != null) {
+                pila.push(nodo);
+                nodo = nodo.hijoIzq;
+            }
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return !pila.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) throw new java.util.NoSuchElementException();
+            Nodo<T> actual = pila.pop();
+
+            // Después de visitar un nodo,
+            // revisamos su rama derecha
+            agregarIzquierdos(actual.hijoDer);
+
+            return actual.dato;
+        }
+
+    }
     
     private class Nodo<T>{
         T dato;
@@ -200,4 +244,6 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
     public boolean isEmpty() {
         return raiz == null;
     }
+    
+    
 }

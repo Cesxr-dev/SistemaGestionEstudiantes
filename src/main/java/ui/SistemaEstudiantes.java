@@ -134,7 +134,7 @@ public class SistemaEstudiantes {
         String op = scanner.nextLine();
         
         switch (op) {
-            case "1" -> System.out.println("");
+            case "1" -> deshacerUltimaAccion();
             case "2" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
@@ -149,7 +149,7 @@ public class SistemaEstudiantes {
         String op = scanner.nextLine();
         
         switch (op) {
-            case "1" -> System.out.println("");
+            case "1" -> listarEstudiantesPorPromedio();
             case "2" -> System.out.println("");
             case "3" -> {}
             default -> System.out.println("\nOpcion no valida.");
@@ -369,18 +369,28 @@ public class SistemaEstudiantes {
             System.out.println("Error: " + e.getMessage());
             System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
         }
-        
-
-        
-        
-        
     }
     
     private static void deshacerUltimaAccion() {
-        System.out.println("--------- Deshacer ultima accion ---------");
+        System.out.println("\n=== DESHACIENDO ACCION ===");
         try {
             gestionService.deshacerUltimaAccion();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private static void listarEstudiantesPorPromedio() {
+        System.out.println("=== LISTA DE ESTUDIANTES POR PROMEDIO ===");
+        gestionService.listarEstudiantesPorPromedio();
+    }
+    
+    private static void rotarTutor() {
+        System.out.println("=== ROTANDO TUTOR ===");
+
+        try {
+            gestionService.rotarTutor();
+        } catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }

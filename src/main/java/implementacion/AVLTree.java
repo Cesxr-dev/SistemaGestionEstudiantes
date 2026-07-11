@@ -9,8 +9,7 @@ package implementacion;
  * @author Cesar Demian Quiroz Montijo 252975
  * @param <T>
  */
-
-public class AVLTree<T extends Comparable<T>>{
+public class AVLTree<T extends Comparable<T>> {
     
     private class Nodo<T> {
         T dato;
@@ -110,11 +109,11 @@ public class AVLTree<T extends Comparable<T>>{
         return y; // Nueva raiz del subarbol
     }
     
-    public void insertar(T dato) {
-        raiz = insertar(raiz, dato);
+    public void insert(T dato) {
+        raiz = insert(raiz, dato);
     }
     
-    private Nodo<T> insertar(Nodo<T> nodo, T dato) {
+    private Nodo<T> insert(Nodo<T> nodo, T dato) {
         if (nodo == null) {
             return new Nodo<>(dato);
         }
@@ -122,11 +121,9 @@ public class AVLTree<T extends Comparable<T>>{
         int comparacion = dato.compareTo(nodo.getDato());
 
         if (comparacion < 0) {
-            nodo.setHijoIzq(insertar(nodo.getHijoIzq(), dato));
-        } else if (comparacion > 0) {
-            nodo.setHijoDer(insertar(nodo.getHijoDer(), dato));
+            nodo.setHijoIzq(insert(nodo.getHijoIzq(), dato));
         } else {
-            return nodo; // Evita duplicados
+            nodo.setHijoDer(insert(nodo.getHijoDer(), dato));
         }
 
         //Actualizar la altura de este nodo ancestro

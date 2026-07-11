@@ -4,6 +4,7 @@
  */
 package services;
 
+import implementacion.AVLTree;
 import implementacion.BinarySearchTree;
 import implementacion.Diccionario;
 import implementacion.LinkedListQueue;
@@ -12,6 +13,7 @@ import interfaces.IQueue;
 import java.util.Stack;
 import model.Curso;
 import model.Estudiante;
+import model.PromedioEstudiante;
 import model.SolicitudCalificacion;
 
 /**
@@ -31,6 +33,7 @@ public class GestionSistemaService {
      */
     public void agregarEstudiante(Estudiante est){
         RegistrarEstudiante accion = new RegistrarEstudiante(arbolEstudiantes, est);
+        accion.hacer();
         pilaAcciones.push(accion);
     }
     
@@ -47,6 +50,7 @@ public class GestionSistemaService {
      */
     public void agregarCurso(Curso c) throws Exception{
         AgregarCurso accion = new AgregarCurso(tablaCursos, c);
+        accion.hacer();
         pilaAcciones.push(accion);
     }
     
@@ -58,6 +62,7 @@ public class GestionSistemaService {
      */
     public void eliminarCurso(String clave) throws Exception{
         EliminarCurso accion = new EliminarCurso(tablaCursos, tablaCursos.get(clave));
+        accion.hacer();
         pilaAcciones.push(accion);
     }
     
@@ -78,6 +83,7 @@ public class GestionSistemaService {
      */
     public void inscribirEstudianteACurso(String matricula, String claveCurso) throws Exception {
         InscribirEstudiante accion = new InscribirEstudiante(tablaCursos.get(claveCurso), buscarEstudiante(matricula));
+        accion.hacer();
         pilaAcciones.push(accion);
     }
     
@@ -195,9 +201,20 @@ public class GestionSistemaService {
                 + " en el curso [" + solicitud.getClave() + "].";
     }
     
-    public void rotarTutor() {
+    public void rotarTutor() throws Exception {
         RotarTutor accion = new RotarTutor();
+        accion.hacer();
         pilaAcciones.push(accion);
+    }
+    
+    public void listarEstudiantesPorPromedio() {
+        AVLTree<PromedioEstudiante> estudiantesPromedio = new AVLTree<>();
+        for(Estudiante estudiante : arbolEstudiantes) {
+            Double promedio = estudiante.getCalificaciones().calcularPromedio();
+            PromedioEstudiante dato = new PromedioEstudiante(promedio, estudiante);
+            estudiantesPromedio.insert(dato);
+        }
+        estudiantesPromedio.inOrder();
     }
     
     public void deshacerUltimaAccion() throws Exception {
