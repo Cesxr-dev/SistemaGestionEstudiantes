@@ -36,9 +36,4 @@ public interface IStack<T> {
      * @return tamaño de la pila
      */
     int size();
-    
-    /**
-     * elimina todos los elementos de la pila, es decir la vacia
-     */
-    void clear();
 }

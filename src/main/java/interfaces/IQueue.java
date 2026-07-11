@@ -36,9 +36,4 @@ public interface IQueue<T> {
      * @return tamaño de la cola
      */
     int size();
-    
-    /**
-     * elimina todos los elementos de la cola, es decir la vacia
-     */
-    void clear();
 }

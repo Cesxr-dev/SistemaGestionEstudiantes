@@ -26,15 +26,6 @@ public interface IList<T> {
     T get(int i);
     
     /**
-     * reemplaza el elemento que se encuentra en la
-        posición i de la lista por el objeto del parámetro. 
-     * 
-     * @param o
-     * @param i 
-     */
-    void set(T o, int i);
-    
-    /**
      * elimina la primera ocurrencia del elemento del
         parámetro si existe. El método regresa true si el elemento existe en la lista, false
         en caso contrario. El método lanza una excepción del tipo Exception Si la lista
@@ -67,9 +58,4 @@ public interface IList<T> {
      * @return verdadero o falso
      */
     boolean isEmpty();
-    
-    /**
-     * elimina todos los elementos de la lista.
-     */
-    void clear();
 }

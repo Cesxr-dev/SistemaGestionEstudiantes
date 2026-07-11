@@ -29,20 +29,8 @@ public interface IDictionary<K, V> {
     V remove(K clave);
     
     /**
-     * verdadero si el diccionario contiene una clave
-     * @param clave clave a buscar en el diccionario
-     * @return verdadero o falso
-     */
-    boolean containsKey(K clave);
-    
-    /**
      * tamaño actual del diccionario
      * @return tamaño del diccionario
      */
     int size();
-    
-    /**
-     * elimina todas las claves y valores del diccionario, es decir lo vacia
-     */
-    void clear();
 }
