@@ -73,9 +73,9 @@ public class Curso implements Comparable<Curso> {
         }
         
         if (inscritos.getTamanio() < this.capacidad) { 
-            inscritos.agregarNodoFinal(estudiante); // Inscrito
+            inscritos.append(estudiante); // Inscrito
         } else {
-            enEspera.agregarNodoFinal(estudiante); // Se va a lista de espera
+            enEspera.append(estudiante); // Se va a lista de espera
         }
     }
     
