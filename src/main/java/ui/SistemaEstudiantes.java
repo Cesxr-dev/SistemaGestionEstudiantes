@@ -229,6 +229,7 @@ public class SistemaEstudiantes {
         System.out.print("Capacidad maxima del curso: ");
         try {
             int capacidad = Integer.parseInt(scanner.nextLine());
+            if (capacidad < 1) throw new IllegalArgumentException();
             //validacion para que obligatoriamente el usuario llene tanto la clave como el nombre
             while(clave.isBlank() || nombre.isBlank()){
                 System.out.println(" ERROR: Debes llenar todos los campos.");
@@ -342,11 +343,12 @@ public class SistemaEstudiantes {
         String clave = scanner.nextLine().trim().toUpperCase();
         
         System.out.print("Calificacion (0 al 10): ");
-        double calif = Double.parseDouble(scanner.nextLine());
         
-        SolicitudCalificacion solicitud = new SolicitudCalificacion(matricula, clave, calif);
         
         try{
+            double calif = Double.parseDouble(scanner.nextLine());
+            if (calif < 0d) throw new IllegalArgumentException("");
+            SolicitudCalificacion solicitud = new SolicitudCalificacion(matricula, clave, calif);
             gestionService.enviarSolicitud(solicitud);
         }catch(Exception e){
             System.out.println("Error: " + e.getMessage());

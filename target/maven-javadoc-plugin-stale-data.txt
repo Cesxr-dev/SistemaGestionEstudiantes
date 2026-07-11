@@ -31,17 +31,17 @@ services
 ui
 interfaces
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java = 1783730546275
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\element-list = 1783768345632
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\overview-tree.html = 1783768347690
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\index.html = 1783768347756
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\allclasses-index.html = 1783768347827
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\allpackages-index.html = 1783768347849
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\module-search-index.js = 1783768347869
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\package-search-index.js = 1783768347890
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\type-search-index.js = 1783768347911
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\member-search-index.js = 1783768347936
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\tag-search-index.js = 1783768347958
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\index-all.html = 1783768348009
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\search.html = 1783768348073
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\overview-summary.html = 1783768348105
-G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\help-doc.html = 1783768348138
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\element-list = 1783769570429
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\overview-tree.html = 1783769574121
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\index.html = 1783769574223
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\allclasses-index.html = 1783769574295
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\allpackages-index.html = 1783769574327
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\module-search-index.js = 1783769574355
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\package-search-index.js = 1783769574448
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\type-search-index.js = 1783769574551
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\member-search-index.js = 1783769574654
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\tag-search-index.js = 1783769574688
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\index-all.html = 1783769574756
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\search.html = 1783769574786
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\overview-summary.html = 1783769574846
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\help-doc.html = 1783769574924

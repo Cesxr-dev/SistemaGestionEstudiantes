@@ -83,6 +83,7 @@ public class Curso implements Comparable<Curso> {
      * 
      */
     public void eliminarEstudiante(Estudiante estudiante) throws Exception {
+        if (estudiante == tutor) rotarTutor();
         // Primero intentamos eliminarlo de los inscritos
         if (inscritos.remove(estudiante)) {
             // Si hay alguien esperando, ocupa el lugar disponible
