@@ -5,20 +5,14 @@ import interfaces.IQueue;
 /**
  *
  * @author Cesar Demian Quiroz Montijo 252975
+ * @param <T>
  */
 public class LinkedListQueue<T> implements IQueue<T>{
-    
-    @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
     
     private class Nodo<T>{
         public Nodo<T> siguiente;
         public T dato;
-
+        
         public Nodo(T dato) {
             this.siguiente = null;
             this.dato = dato;
@@ -55,7 +49,7 @@ public class LinkedListQueue<T> implements IQueue<T>{
     public void enqueue(T dato){
         Nodo<T> nuevoNodo = new Nodo<>(dato);
         
-        if (isEempty()) {
+        if (isEmpty()) {
             cabeza = nuevoNodo;
         } else {
             fin.setSiguiente(nuevoNodo);
@@ -67,7 +61,7 @@ public class LinkedListQueue<T> implements IQueue<T>{
 
     @Override
     public T dequeue(){
-        if (isEempty()) {
+        if (isEmpty()) {
             throw new IllegalStateException("La cola esta vacia");
         }
         
@@ -84,14 +78,15 @@ public class LinkedListQueue<T> implements IQueue<T>{
     
     @Override
     public T peek(){
-        if (isEempty()) {
+        if (isEmpty()) {
             throw new IllegalStateException("La cola esta vacia");
         }
         return cabeza.getDato();
     }
     
-    public boolean isEempty(){
-
+    @Override
+    public boolean isEmpty(){
+        
         return cabeza == null;
         
     }
