@@ -101,14 +101,14 @@ public class Estudiante implements Comparable<Estudiante> {
         this.telefono = telefono;
         this.correo = correo;
         this.direccionPostal = direccionPostal;
+        this.calificaciones = new Calificaciones();
     }
     
     public Estudiante(String matricula) {
         this.matricula = matricula;
-        
+        this.calificaciones = new Calificaciones();
     }
     
-
     public String getMatricula() {
         return matricula;
     }

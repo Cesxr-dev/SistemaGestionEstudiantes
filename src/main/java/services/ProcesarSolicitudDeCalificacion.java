@@ -9,6 +9,9 @@ import interfaces.IAccion;
 
 public class ProcesarSolicitudDeCalificacion implements IAccion {
 
+    private SolicitudCalificacion solicitud;
+    private Float calificacionAnterior;
+    
     @Override
     public void hacer() {
         

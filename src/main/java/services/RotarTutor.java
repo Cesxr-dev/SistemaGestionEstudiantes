@@ -4,11 +4,14 @@
 package services;
 
 import interfaces.IAccion;
+import model.Curso;
 
 //** @author Julian Daniel Ramirez Garcia
 
 public class RotarTutor implements IAccion {
 
+    private Curso curso;
+    
     @Override
     public void hacer() {
         
@@ -18,5 +21,4 @@ public class RotarTutor implements IAccion {
     public void deshacer() {
         
     }
-    
 }
