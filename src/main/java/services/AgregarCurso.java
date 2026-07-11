@@ -21,12 +21,12 @@ public class AgregarCurso implements IAccion {
     }
     
     @Override
-    public void hacer() {
-        
+    public void hacer() throws Exception {
+        cursos.put(curso.getClave(), curso);
     }
 
     @Override
     public void deshacer() {
-        
+        cursos.remove(curso.getClave());
     }
 }

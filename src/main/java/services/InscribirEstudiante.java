@@ -15,8 +15,9 @@ public class InscribirEstudiante implements IAccion {
     private Estudiante estudiante;
     
     @Override
-    public void hacer() {
-        
+    public void hacer() throws Exception {
+        curso.inscribirEstudiante(estudiante);
+        estudiante.getCalificaciones().
     }
 
     @Override

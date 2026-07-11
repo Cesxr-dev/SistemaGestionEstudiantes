@@ -22,11 +22,11 @@ public class RegistrarEstudiante implements IAccion {
     
     @Override
     public void hacer() {
-        
+        estudiantes.insert(estudiante);
     }
 
     @Override
     public void deshacer() {
-        
+        estudiantes.remove(estudiante);
     }
 }

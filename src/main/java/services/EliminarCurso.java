@@ -4,11 +4,8 @@
 package services;
 
 import implementacion.Diccionario;
-import implementacion.DoubleLinkedListCircular;
-import implementacion.LinkedList;
 import interfaces.IAccion;
 import model.Curso;
-import model.Estudiante;
 
 //** @author Julian Daniel Ramirez Garcia
 
@@ -25,11 +22,11 @@ public class EliminarCurso implements IAccion {
     
     @Override
     public void hacer() {
-        
+        cursos.remove(curso.getClave());
     }
 
     @Override
-    public void deshacer() {
-        
+    public void deshacer() throws Exception {
+        cursos.put(curso.getClave(), curso);
     }
 }
