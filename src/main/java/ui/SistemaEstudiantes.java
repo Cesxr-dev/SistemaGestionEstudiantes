@@ -16,9 +16,8 @@ import services.GestionSistemaService;
 
 public class SistemaEstudiantes {
     private static final Scanner scanner = new Scanner(System.in);
-    
     private static final  GestionSistemaService gestionService = new GestionSistemaService();
-
+    
     public static void main(String[] args) {
         menuPrincipal();
     }
@@ -58,6 +57,7 @@ public class SistemaEstudiantes {
         } while (opcionPrincipal != 7);
     }
     
+    
     private static void subMenuEstudiantes() {
         System.out.println("\n--- SUBMENU: ESTUDIANTES ---");
         System.out.println("1. Registrar estudiante");
@@ -74,6 +74,7 @@ public class SistemaEstudiantes {
         }
     }
 
+    
     private static void subMenuCursos() {
         System.out.println("\n--- SUBMENU: CURSOS ---");
         System.out.println("1. Agregar curso");
@@ -92,6 +93,7 @@ public class SistemaEstudiantes {
         }
     }
 
+    
     private static void subMenuInscripciones() {
         System.out.println("\n--- SUBMENU: INSCRIPCIONES ---");
         System.out.println("1. Inscribir estudiante en curso");
@@ -110,6 +112,7 @@ public class SistemaEstudiantes {
         }
     }
 
+    
     private static void subMenuCalificaciones() {
         System.out.println("\n--- SUBMENU: CALIFICACIONES ---");
         System.out.println("1. Enviar solicitud de calificacion (colas)");
@@ -126,6 +129,7 @@ public class SistemaEstudiantes {
         }
     }
 
+    
     private static void subMenuAcciones() {
         System.out.println("\n--- SUBMENU: ACCIONES ---");
         System.out.println("1. Deshacer ultima accion");
@@ -140,6 +144,7 @@ public class SistemaEstudiantes {
         }
     }
 
+    
     private static void subMenuReportes() {
         System.out.println("\n--- SUBMENU: REPORTES ---");
         System.out.println("1. Listar estudiantes ordenados por promedio");
@@ -150,11 +155,12 @@ public class SistemaEstudiantes {
         
         switch (op) {
             case "1" -> listarEstudiantesPorPromedio();
-            case "2" -> System.out.println("");
+            case "2" -> rotarTutor();
             case "3" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
     }
+    
     
     private static void ejecutarRegistroEstudiante(){
         System.out.println("\n=== REGISTRO DE NUEVO ESTUDIANTE ===");
@@ -187,12 +193,12 @@ public class SistemaEstudiantes {
         }
     }
     
+    
     private static void buscarEstudiantePorMatricula(){
         System.out.println("\n=== BUSQUEDA DE ESTUDIANTE POR MATRICULA ===");
     
         System.out.print("Matricula (Ej. ABC1234): ");
         String matricula = scanner.nextLine().toUpperCase();
-        
         
         while(matricula.isBlank()){
             System.out.println(" ERROR: Debes llenar todos los campos.");
@@ -208,8 +214,6 @@ public class SistemaEstudiantes {
             
             System.out.println("Estudiante no encontrado.");
         }
-        
-        
     }
     
     
@@ -249,6 +253,7 @@ public class SistemaEstudiantes {
         }
     }
     
+    
     private static void eliminarCurso(){
         System.out.println("\n=== ELIMINAR CURSO ===");
         
@@ -268,18 +273,17 @@ public class SistemaEstudiantes {
             System.out.println("Error: " + e.getMessage());
             System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
         }
-        
     }
+    
     
     private static void listarCatalogoCursos(){
         gestionService.listarCursos();
     }
     
+    
     private static void inscribirEstudiante(){
         System.out.println("\n=== INSCRIPCION ESTUDIANTE A CURSO ===");
         
-        
-    
         System.out.print("Matricula del Estudiante(Ej. ABC-123): ");
         String matricula = scanner.nextLine().trim().toUpperCase();
         
@@ -295,12 +299,12 @@ public class SistemaEstudiantes {
         }
     }
     
+    
     private static void mostrarListaCursoInscritos(){
         System.out.println("\n=== MOSTRAR LISTA DE INSCRITOS A CURSO ===");
         
         System.out.print("Clave del curso a listar(Ej. MAT-123): ");
         String clave = scanner.nextLine().trim().toUpperCase();
-        
         
         try{
             gestionService.mostrarInscritosDeCurso(clave);
@@ -308,8 +312,8 @@ public class SistemaEstudiantes {
             System.out.println("Error: " + e.getMessage());
             System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
         }
-        
     }
+    
     
     private static void mostrarListaCursoEnEspera(){
         
@@ -326,6 +330,7 @@ public class SistemaEstudiantes {
             System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
         }
     }
+    
     
     private static void  enviarSolicitudCalificacion(){
         System.out.println("\n=== CREAR SOLICITUD DE CALIFICACION ===");
@@ -347,13 +352,11 @@ public class SistemaEstudiantes {
             System.out.println("Error: " + e.getMessage());
             System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
         }
-        
     }
     
-    private static void procesarSolicitudCalificacion(){
-
+    
+    private static void procesarSolicitudCalificacion() {
         System.out.println("\n=== PROCESANDO SOLICITUD DE CALIFICACION ===");
-
         
         try{
             String mensajeResultado = gestionService.procesarSiguienteSolicitud();
@@ -365,6 +368,7 @@ public class SistemaEstudiantes {
         }
     }
     
+    
     private static void deshacerUltimaAccion() {
         System.out.println("\n=== DESHACIENDO ACCION ===");
         try {
@@ -374,14 +378,15 @@ public class SistemaEstudiantes {
         }
     }
     
+    
     private static void listarEstudiantesPorPromedio() {
         System.out.println("=== LISTA DE ESTUDIANTES POR PROMEDIO ===");
         gestionService.listarEstudiantesPorPromedio();
     }
     
+    
     private static void rotarTutor() {
         System.out.println("=== ROTANDO TUTOR ===");
-
         try {
             gestionService.rotarTutor();
         } catch(Exception e) {

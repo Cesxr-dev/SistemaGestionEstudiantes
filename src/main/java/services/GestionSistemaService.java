@@ -32,13 +32,15 @@ public class GestionSistemaService {
      * @param est Estudiante a agregar
      */
     public void agregarEstudiante(Estudiante est){
+        if (est == null) throw new NullPointerException("No se puede registrar a un estudiante vacio");
         RegistrarEstudiante accion = new RegistrarEstudiante(arbolEstudiantes, est);
         accion.hacer();
         pilaAcciones.push(accion);
     }
     
     
-    public Estudiante  buscarEstudiante(String matricula){
+    public Estudiante buscarEstudiante(String matricula){
+        if (matricula == null) throw new NullPointerException("No se puede buscar una matricula vacia");
         Estudiante temporal = new Estudiante(matricula); 
         return arbolEstudiantes.find(temporal);
     }
@@ -49,6 +51,7 @@ public class GestionSistemaService {
      * @throws Exception si clave del curso ya existe en el diccionario.
      */
     public void agregarCurso(Curso c) throws Exception{
+        if (c == null) throw new NullPointerException("No se puede agregar un curso vacio");
         AgregarCurso accion = new AgregarCurso(tablaCursos, c);
         accion.hacer();
         pilaAcciones.push(accion);
@@ -61,6 +64,7 @@ public class GestionSistemaService {
      * @throws Exception si la clave no se encuentra en el sistema
      */
     public void eliminarCurso(String clave) throws Exception{
+        if (clave == null) throw new NullPointerException("No existe un curso con clave vacia");
         EliminarCurso accion = new EliminarCurso(tablaCursos, tablaCursos.get(clave));
         accion.hacer();
         pilaAcciones.push(accion);
@@ -82,6 +86,7 @@ public class GestionSistemaService {
      * @throws Exception 
      */
     public void inscribirEstudianteACurso(String matricula, String claveCurso) throws Exception {
+        if (matricula == null || claveCurso == null) throw new NullPointerException("No se puede inscribir un alumno con informacion vacia");
         InscribirEstudiante accion = new InscribirEstudiante(tablaCursos.get(claveCurso), buscarEstudiante(matricula));
         accion.hacer();
         pilaAcciones.push(accion);

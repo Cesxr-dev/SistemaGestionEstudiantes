@@ -29,5 +29,6 @@ public class InscribirEstudiante implements IAccion {
     @Override
     public void deshacer() throws Exception {
         curso.eliminarEstudiante(estudiante);
+        estudiante.getCalificaciones().dropCalificacion(curso.getClave());
     }
 }

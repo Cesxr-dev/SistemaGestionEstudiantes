@@ -18,10 +18,12 @@ public class RotarTutor implements IAccion {
     public void hacer() throws Exception {
         tutorAnterior = curso.getTutor();
         curso.rotarTutor();
+        System.out.println("Tutor Acutual: " + curso.getTutor());
     }
 
     @Override
     public void deshacer() {
         curso.setTutor(tutorAnterior);
+        System.out.println("Tutor Actual: " + curso.getTutor());
     }
 }
