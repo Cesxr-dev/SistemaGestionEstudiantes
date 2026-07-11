@@ -72,6 +72,17 @@ public class LinkedList<T> implements IList<T> {
         
         auxiliar.setDato(o);
     }
+    
+    public void setHead(T o) {
+        Nodo<T> actual = cabeza;
+        while (actual != null) {
+            if (actual.dato.equals(o)) {
+                cabeza = actual;
+                return;
+            }
+            actual = actual.getSiguiente();
+        }
+    }
 
     @Override
     public boolean remove(T o) throws Exception {

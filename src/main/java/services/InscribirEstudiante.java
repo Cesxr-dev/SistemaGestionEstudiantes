@@ -17,11 +17,11 @@ public class InscribirEstudiante implements IAccion {
     @Override
     public void hacer() throws Exception {
         curso.inscribirEstudiante(estudiante);
-        estudiante.getCalificaciones().
+        estudiante.getCalificaciones().addCalificacion(curso.getClave(), null);
     }
 
     @Override
-    public void deshacer() {
-        
+    public void deshacer() throws Exception {
+        curso.eliminarEstudiante(estudiante);
     }
 }

@@ -7,7 +7,6 @@ package model;
 import implementacion.DoubleLinkedListCircular;
 import implementacion.LinkedList;
 
-
 public class Curso implements Comparable<Curso> {
     private String clave, nombre;
     private int capacidad; // Capacidad maxima del curso
@@ -77,6 +76,27 @@ public class Curso implements Comparable<Curso> {
         } else {
             enEspera.append(estudiante); // Se va a lista de espera
         }
+    }
+    
+    /**
+     * 
+     */
+    public void eliminarEstudiante(Estudiante estudiante) throws Exception {
+        // Primero intentamos eliminarlo de los inscritos
+        if (inscritos.remove(estudiante)) {
+            // Si hay alguien esperando, ocupa el lugar disponible
+            if (!enEspera.isEmpty()) {
+                Estudiante siguiente = enEspera.get(0);
+                enEspera.remove(siguiente);
+                inscritos.append(siguiente);
+            }
+            return;
+        }
+        // Si no estaba inscrito, intentamos eliminarlo de la lista de espera
+        if (enEspera.remove(estudiante)) {
+            return;
+        }
+        throw new Exception("El estudiante no pertenece al curso.");
     }
     
     /**
@@ -174,4 +194,11 @@ public class Curso implements Comparable<Curso> {
         return false;
     }
     
+    public void establecerTutor(Estudiante estudiante) throws Exception {
+        inscritos.setHead(estudiante);
+    }
+    
+    public Estudiante getTutor() {
+        return inscritos.get(0);
+    }
 }
