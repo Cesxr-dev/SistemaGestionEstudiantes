@@ -6,10 +6,10 @@ package services;
 
 import implementacion.BinarySearchTree;
 import implementacion.Diccionario;
-import implementacion.DoubleLinkedListCircular;
-import implementacion.LinkedList;
 import implementacion.LinkedListQueue;
+import interfaces.IAccion;
 import interfaces.IQueue;
+import java.util.Stack;
 import model.Curso;
 import model.Estudiante;
 import model.SolicitudCalificacion;
@@ -21,18 +21,17 @@ import model.SolicitudCalificacion;
 public class GestionSistemaService {
     private final BinarySearchTree<Estudiante> arbolEstudiantes = new BinarySearchTree<>();
     private final Diccionario<String,Curso> tablaCursos = new Diccionario<>(20);
-    private final LinkedList<Estudiante> inscritos = new LinkedList<>();
-    private final DoubleLinkedListCircular<Estudiante> enEspera = new DoubleLinkedListCircular<>();
-    IQueue<SolicitudCalificacion> colaSolicitudes = new LinkedListQueue<>();
+    private IQueue<SolicitudCalificacion> colaSolicitudes = new LinkedListQueue<>();
+    private Stack<IAccion> pilaAcciones = new Stack<>();
+    
     
     /**
      * Metodo para agregar un estudiante al arbol BST
      * @param est Estudiante a agregar
      */
     public void agregarEstudiante(Estudiante est){
-        arbolEstudiantes.insert(est);
-        
-        arbolEstudiantes.inOrder(); // metodo solo para comprobar que funciona el insertar
+        RegistrarEstudiante accion = new RegistrarEstudiante(arbolEstudiantes, est);
+        pilaAcciones.push(accion);
     }
     
     
@@ -47,7 +46,8 @@ public class GestionSistemaService {
      * @throws Exception si clave del curso ya existe en el diccionario.
      */
     public void agregarCurso(Curso c) throws Exception{
-        tablaCursos.put(c.getClave(), c);
+        AgregarCurso accion = new AgregarCurso(tablaCursos, c);
+        pilaAcciones.push(accion);
     }
     
     
@@ -57,13 +57,8 @@ public class GestionSistemaService {
      * @throws Exception si la clave no se encuentra en el sistema
      */
     public void eliminarCurso(String clave) throws Exception{
-        
-        
-        Curso eliminado = tablaCursos.remove(clave);
-        
-        if(eliminado == null){
-            throw new Exception("El curso con la clave '" + clave + "' no se encuentra registrado en el sistema.");
-        }
+        EliminarCurso accion = new EliminarCurso(tablaCursos, tablaCursos.get(clave));
+        pilaAcciones.push(accion);
     }
     
     /**
@@ -82,20 +77,8 @@ public class GestionSistemaService {
      * @throws Exception 
      */
     public void inscribirEstudianteACurso(String matricula, String claveCurso) throws Exception {
-        // Buscamos si el estudiante existe en el arbol BST
-        Estudiante est = buscarEstudiante(matricula);
-        if (est == null) {
-            throw new Exception("El estudiante con matricula " + matricula + " no existe.");
-        }
-
-        // Buscamos si el curso existe en el Diccionario
-        Curso curso = tablaCursos.get(claveCurso);
-        if (curso == null) {
-            throw new Exception("El curso con clave " + claveCurso + " no existe.");
-        }
-
-        // llamamos inscribirEstudiante de la clase curso (el ya sabe su capacidad y tiene sus listas)
-        curso.inscribirEstudiante(est);
+        InscribirEstudiante accion = new InscribirEstudiante(tablaCursos.get(claveCurso), buscarEstudiante(matricula));
+        pilaAcciones.push(accion);
     }
     
     
@@ -212,5 +195,12 @@ public class GestionSistemaService {
                 + " en el curso [" + solicitud.getClave() + "].";
     }
     
+    public void rotarTutor() {
+        RotarTutor accion = new RotarTutor();
+        pilaAcciones.push(accion);
+    }
     
+    public void deshacerUltimaAccion() throws Exception {
+        pilaAcciones.pop().deshacer();
+    }
 }

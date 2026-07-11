@@ -13,6 +13,11 @@ public class InscribirEstudiante implements IAccion {
 
     private Curso curso;
     private Estudiante estudiante;
+
+    public InscribirEstudiante(Curso curso, Estudiante estudiante) {
+        this.curso = curso;
+        this.estudiante = estudiante;
+    }
     
     @Override
     public void hacer() throws Exception {
