@@ -1,0 +1,47 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'G:/Mi unidad/GitRepos/SistemaGestionEstudiantes/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'G:/Mi unidad/GitRepos/SistemaGestionEstudiantes/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SistemaEstudiantes 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'SistemaEstudiantes 1.0-SNAPSHOT API'
+implementacion
+model
+services
+ui
+interfaces
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java = 1783730546275
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\element-list = 1783761052290
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\overview-tree.html = 1783761053745
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\index.html = 1783761053768
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\allclasses-index.html = 1783761053842
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\allpackages-index.html = 1783761053867
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\module-search-index.js = 1783761053889
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\package-search-index.js = 1783761053910
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\type-search-index.js = 1783761053976
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\member-search-index.js = 1783761054010
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\tag-search-index.js = 1783761054034
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\index-all.html = 1783761054090
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\search.html = 1783761054114
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\overview-summary.html = 1783761054142
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\target\reports\apidocs\help-doc.html = 1783761054169

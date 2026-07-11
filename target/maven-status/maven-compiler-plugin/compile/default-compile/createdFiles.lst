@@ -1,7 +1,7 @@
 interfaces\IList.class
 interfaces\IDictionary.class
-implementacion\BinarySearchTree.class
 implementacion\BinarySearchTree$IteradorBST.class
+implementacion\BinarySearchTree.class
 services\AgregarCurso.class
 services\RegistrarEstudiante.class
 services\RotarTutor.class

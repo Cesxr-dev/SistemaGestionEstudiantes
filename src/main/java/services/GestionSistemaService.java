@@ -17,7 +17,7 @@ import model.PromedioEstudiante;
 import model.SolicitudCalificacion;
 
 /**
- * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
+ * @author Julian Daniel Ramirez Garcia y Cesar Demian Quiroz Montijo 252975
  */
 
 public class GestionSistemaService {

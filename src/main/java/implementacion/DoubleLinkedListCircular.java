@@ -7,7 +7,7 @@ package implementacion;
 import interfaces.IList;
 
 /**
- * @author Julian Daniel Ramirez Garcia & Cesar Demian Quiroz Montijo 252975
+ * @author Julian Daniel Ramirez Garcia y Cesar Demian Quiroz Montijo 252975
  * @param <T>
  */
 public class DoubleLinkedListCircular<T> implements IList<T> {
