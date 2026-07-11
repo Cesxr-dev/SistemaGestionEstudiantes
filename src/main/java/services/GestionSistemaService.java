@@ -26,7 +26,7 @@ public class GestionSistemaService {
      * @param est Estudiante a agregar
      */
     public void agregarEstudiante(Estudiante est){
-        arbolEstudiantes.insertar(est);
+        arbolEstudiantes.insert(est);
         
         arbolEstudiantes.inOrder(); // metodo solo para comprobar que funciona el insertar
     }
@@ -34,7 +34,7 @@ public class GestionSistemaService {
     
     public Estudiante  buscarEstudiante(String matricula){
         Estudiante temporal = new Estudiante(matricula); 
-        return arbolEstudiantes.buscar(temporal);
+        return arbolEstudiantes.find(temporal);
     }
     
     /**
