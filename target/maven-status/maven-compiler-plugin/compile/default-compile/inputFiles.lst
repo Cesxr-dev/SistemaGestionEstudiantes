@@ -15,6 +15,7 @@ G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\interfaces\ITree.j
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\model\Calificaciones.java
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\model\Curso.java
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\model\Estudiante.java
+G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\model\PromedioEstudiante.java
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\model\SolicitudCalificacion.java
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\services\AgregarCurso.java
 G:\Mi unidad\GitRepos\SistemaGestionEstudiantes\src\main\java\services\EliminarCurso.java

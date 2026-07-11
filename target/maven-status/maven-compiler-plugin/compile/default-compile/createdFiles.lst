@@ -1,10 +1,12 @@
 interfaces\IList.class
 interfaces\IDictionary.class
 implementacion\BinarySearchTree.class
+implementacion\BinarySearchTree$IteradorBST.class
 services\AgregarCurso.class
 services\RegistrarEstudiante.class
 services\RotarTutor.class
 services\GestionSistemaService.class
+model\PromedioEstudiante.class
 services\InscribirEstudiante.class
 implementacion\AVLTree$Nodo.class
 services\EliminarCurso.class

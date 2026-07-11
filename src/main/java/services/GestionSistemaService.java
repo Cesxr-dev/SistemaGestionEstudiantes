@@ -215,6 +215,7 @@ public class GestionSistemaService {
             estudiantesPromedio.insert(dato);
         }
         estudiantesPromedio.inOrder();
+        System.out.println();
     }
     
     public void deshacerUltimaAccion() throws Exception {

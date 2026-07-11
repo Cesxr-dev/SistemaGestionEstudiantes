@@ -52,14 +52,14 @@ public class Calificaciones {
             return notas.get(indice);
         }
         
-        public double calcularPromedio() {
+        public Double calcularPromedio() {
             if(notas.isEmpty()) {
                 return 0.0;
             }
             return calcularSuma(0) / notas.size();
         }
         
-        private double calcularSuma(int indice) {
+        private Double calcularSuma(int indice) {
             if(indice == notas.size()) {
                 return 0.0;
             }

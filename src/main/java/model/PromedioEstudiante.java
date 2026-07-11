@@ -35,4 +35,9 @@ public class PromedioEstudiante implements Comparable<PromedioEstudiante> {
     public int compareTo(PromedioEstudiante o) {
         return Double.compare(promedio, o.promedio);
     }
+    
+    @Override
+    public String toString() {
+        return "Promedio: " + promedio + ", Estudiante: " + estudiante.getMatricula();
+    }
 }
