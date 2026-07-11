@@ -20,6 +20,12 @@ public class DynamicArray<T> implements IList<T> {
         elementos = 0;
     }
     
+    public DynamicArray(){
+        datos = (T[]) new Object[1];
+        capacidad = 1;
+        elementos = 0;
+    }
+    
     @Override
     public void append(T o) {
         if(elementos == capacidad){

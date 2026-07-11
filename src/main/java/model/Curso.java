@@ -174,5 +174,4 @@ public class Curso implements Comparable<Curso> {
         return false;
     }
     
-    
 }
