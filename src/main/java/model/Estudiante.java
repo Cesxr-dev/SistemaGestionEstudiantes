@@ -11,16 +11,16 @@ import implementacion.DynamicArray;
  */
 public class Estudiante implements Comparable<Estudiante> {
     
-    private class Calificaciones {
+    public class Calificaciones {
         DynamicArray<String> cursos;
-        DynamicArray<Float> notas;
+        DynamicArray<Double> notas;
         
         public Calificaciones() {
             cursos = new DynamicArray<>();
             notas = new DynamicArray<>();
         }
         
-        public boolean setCalificacion(String claveCurso, Float nota) {
+        public boolean setCalificacion(String claveCurso, double nota) {
             int i = cursos.indexOf(claveCurso);
             if(i != -1) {
                 notas.set(nota, i);
@@ -29,11 +29,10 @@ public class Estudiante implements Comparable<Estudiante> {
             return false;
         }
         
-        public boolean addCalificacion(String claveCurso, Float nota) {
+        public boolean addCalificacion(String claveCurso, double nota) {
             if(cursos.indexOf(claveCurso) != -1) {
                 return false;
             }
-
             cursos.append(claveCurso);
             notas.append(nota);
             return true;
@@ -44,13 +43,12 @@ public class Estudiante implements Comparable<Estudiante> {
             if (indice == -1) {
                 return false;
             }
-
             cursos.remove(claveCurso);
             notas.remove(notas.get(indice));
             return true;
         }
         
-        public Float obtenerCalificacion(String curso) {
+        public Double obtenerCalificacion(String curso) {
             int indice = cursos.indexOf(curso);
             if(indice == -1) {
                 return null;
@@ -58,16 +56,16 @@ public class Estudiante implements Comparable<Estudiante> {
             return notas.get(indice);
         }
         
-        public float calcularPromedio() {
+        public double calcularPromedio() {
             if(notas.isEmpty()) {
-                return 0;
+                return 0.0;
             }
             return calcularSuma(0) / notas.size();
         }
         
-        private float calcularSuma(int indice) {
+        private double calcularSuma(int indice) {
             if(indice == notas.size()) {
-                return 0;
+                return 0.0;
             }
             return notas.get(indice) + calcularSuma(indice + 1);
         }
@@ -78,10 +76,24 @@ public class Estudiante implements Comparable<Estudiante> {
         
         public void mostrarCalificaciones() {
             for(int i = 0; i < cursos.size(); i++) {
-                System.out.println(
-                    cursos.get(i) + ": " + notas.get(i)
-                );
+                System.out.println(cursos.get(i) + ": " + notas.get(i));
             }
+        }
+        
+        @Override
+        public String toString() {
+            if (cursos.isEmpty()) {
+                return "Sin cursos inscritos";
+            }
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < cursos.size(); i++) {
+                sb.append(cursos.get(i)).append(": ").append(notas.get(i));
+                if (i < cursos.size() - 1) {
+                    sb.append(", ");
+                }
+            }
+            sb.append("] (Promedio: ").append(calcularPromedio()).append(")");
+            return sb.toString();
         }
     }
     
@@ -94,18 +106,19 @@ public class Estudiante implements Comparable<Estudiante> {
 
     public Estudiante() {
     }
-
+    
     public Estudiante(String matricula, String nombreCompleto, String telefono, String correo, String direccionPostal) {
         this.matricula = matricula;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
         this.correo = correo;
         this.direccionPostal = direccionPostal;
+        this.calificaciones = new Calificaciones();
     }
     
     public Estudiante(String matricula) {
         this.matricula = matricula;
-        
+        this.calificaciones = new Calificaciones();
     }
     
 
@@ -155,8 +168,19 @@ public class Estudiante implements Comparable<Estudiante> {
 
     @Override
     public String toString() {
-        return "Estudiante{" + "matricula=" + matricula + ", nombreCompleto=" + nombreCompleto + ", telefono=" + telefono + ", correo=" + correo + ", direccionPostal=" + direccionPostal + '}';
+        return "Estudiante{" + 
+                "matricula='" + matricula + '\'' + 
+                ", nombreCompleto='" + nombreCompleto + '\'' + 
+                ", telefono='" + telefono + '\'' + 
+                ", correo='" + correo + '\'' + 
+                ", direccionPostal='" + direccionPostal + '\'' + 
+                ", calificaciones=" + calificaciones.toString() + 
+                '}';
     }
+
+    
+    
+    
     
     @Override
     public int compareTo(Estudiante o) {

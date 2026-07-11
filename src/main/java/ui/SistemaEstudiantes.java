@@ -7,6 +7,7 @@ package ui;
 import java.util.Scanner;
 import model.Curso;
 import model.Estudiante;
+import model.SolicitudCalificacion;
 import services.GestionSistemaService;
 
 /**
@@ -118,8 +119,8 @@ public class SistemaEstudiantes {
         String op = scanner.nextLine();
         
         switch (op) {
-            case "1" -> System.out.println("");
-            case "2" -> System.out.println("");
+            case "1" -> enviarSolicitudCalificacion();
+            case "2" -> procesarSolicitudCalificacion();
             case "3" -> {}
             default -> System.out.println("\nOpcion no valida.");
         }
@@ -330,8 +331,49 @@ public class SistemaEstudiantes {
             System.out.println("Error: " + e.getMessage());
             System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
         }
+    }
+    
+    private static void  enviarSolicitudCalificacion(){
+        System.out.println("\n=== CREAR SOLICITUD DE CALIFICACION ===");
+        
+        System.out.print("Matricula del Estudiante(Ej. ABC-123): ");
+        String matricula = scanner.nextLine().trim().toUpperCase();
+        
+        System.out.print("Clave del curso(Ej. MAT-123): ");
+        String clave = scanner.nextLine().trim().toUpperCase();
+        
+        System.out.print("Capacidad maxima del curso: ");
+        double calif = Double.parseDouble(scanner.nextLine());
+        
+        SolicitudCalificacion solicitud = new SolicitudCalificacion(matricula, clave, calif);
+        
+        try{
+            gestionService.enviarSolicitud(solicitud);
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
+        }
+        
+    }
+    
+    private static void procesarSolicitudCalificacion(){
+
+        System.out.println("\n=== PROCESANDO SOLICITUD DE CALIFACION ===");
+
+        
+        try{
+            String mensajeResultado = gestionService.procesarSiguienteSolicitud();
+            
+            System.out.println(">> " + mensajeResultado);
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo completar la eliminacion del curso. Intente de nuevo.");
+        }
+        
+
         
         
         
     }
 }
+
