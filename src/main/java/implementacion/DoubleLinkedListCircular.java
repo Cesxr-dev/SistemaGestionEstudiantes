@@ -61,7 +61,8 @@ public class DoubleLinkedListCircular<T> implements IList<T> {
 
     
     // Agregar al final
-    public void agregarNodoFinal(T o) {
+    @Override
+    public void append(T o) {
         Nodo<T> nuevoNodo = new Nodo<>(o);
 
         if (cabeza == null) {
@@ -138,7 +139,6 @@ public class DoubleLinkedListCircular<T> implements IList<T> {
         return -1;
     }
 
-    @Override
     public void clear() {
         cabeza = null;
         tamanio = 0;
@@ -158,4 +158,13 @@ public class DoubleLinkedListCircular<T> implements IList<T> {
         return auxiliar.getDato();
     }
     
+    @Override
+    public int size() {
+        return tamanio;
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return tamanio == 0;
+    }
 }

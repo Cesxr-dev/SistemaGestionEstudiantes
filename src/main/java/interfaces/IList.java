@@ -26,6 +26,13 @@ public interface IList<T> {
     T get(int i);
     
     /**
+     * actualiza en la posicion i el valor de o
+     * @param o nuevo valor para el indice i
+     * @param i posicion para actualizar a o
+     */
+    void set(T o, int i);
+    
+    /**
      * elimina la primera ocurrencia del elemento del
         parámetro si existe. El método regresa true si el elemento existe en la lista, false
         en caso contrario. El método lanza una excepción del tipo Exception Si la lista

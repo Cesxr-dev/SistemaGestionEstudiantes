@@ -41,7 +41,8 @@ public class LinkedList<T> implements IList<T> {
         return this.tamanio;
     }
 
-    public void agregarNodoFinal(T o) {
+    @Override
+    public void append(T o) {
         Nodo<T> nuevoNodo = new Nodo<>(o);
         
         
@@ -115,11 +116,9 @@ public class LinkedList<T> implements IList<T> {
         return -1;
     }
 
-    @Override
     public void clear() {
         cabeza = null;
-        tamanio = 0;
-        
+        tamanio = 0;   
     }
     
     public T get(int indice) {
@@ -136,5 +135,15 @@ public class LinkedList<T> implements IList<T> {
         }
         
         return auxiliar.getDato();
+    }
+    
+    @Override
+    public int size() {
+        return tamanio;
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return tamanio == 0;
     }
 }
