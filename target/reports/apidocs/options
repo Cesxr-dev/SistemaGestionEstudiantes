@@ -1,0 +1,23 @@
+--no-fonts
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'G:/Mi unidad/GitRepos/SistemaGestionEstudiantes/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'G:/Mi unidad/GitRepos/SistemaGestionEstudiantes/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SistemaEstudiantes 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'SistemaEstudiantes 1.0-SNAPSHOT API'

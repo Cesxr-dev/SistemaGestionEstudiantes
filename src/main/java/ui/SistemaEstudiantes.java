@@ -375,5 +375,14 @@ public class SistemaEstudiantes {
         
         
     }
+    
+    private static void deshacerUltimaAccion() {
+        System.out.println("--------- Deshacer ultima accion ---------");
+        try {
+            gestionService.deshacerUltimaAccion();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 

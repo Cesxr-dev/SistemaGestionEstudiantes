@@ -20,8 +20,10 @@ interfaces\IQueue.class
 implementacion\DoubleLinkedListCircular.class
 implementacion\Diccionario.class
 implementacion\LinkedListQueue$Nodo.class
+implementacion\LinkedListStack.class
 model\Estudiante.class
 implementacion\LinkedList.class
+implementacion\LinkedListStack$Nodo.class
 services\ProcesarSolicitudDeCalificacion.class
 model\Calificaciones.class
 interfaces\IStack.class
